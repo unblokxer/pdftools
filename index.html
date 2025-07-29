@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Unblokxer - Free Website Unblocker</title>
+  <style>
+    body {
+      font-family: "Courier New", monospace;
+      background-color: #000;
+      color: #00FF00;
+      margin: 20px;
+    }
+
+    textarea, input {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 8px;
+      font-size: 14px;
+      background-color: #111;
+      color: #00FF00;
+      border: 1px solid #00FF00;
+      font-family: inherit;
+    }
+
+    iframe {
+      width: 100%;
+      height: 800px;
+      border: 1px solid #00FF00;
+      background-color: #000;
+    }
+
+    button {
+      font-family: inherit;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      background-color: #111;
+      color: #00FF00;
+      border: 1px solid #00FF00;
+    }
+
+    button:hover {
+      background-color: #00FF00;
+      color: #000;
+    }
+
+    #gameMenu, #codeMenu {
+      display: none;
+      position: fixed;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, -20%);
+      background: #000;
+      border: 2px solid #00FF00;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 255, 0, 0.3);
+      width: 320px;
+      padding: 20px;
+      z-index: 9999;
+      text-align: center;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    #gameMenu h3, #codeMenu h3 {
+      margin-bottom: 15px;
+    }
+
+    #gameMenu button, #codeMenu button {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    h1, h2, h3, h4, label {
+      color: #00FF00;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Unblokxer - Free Website Unblocker</h1>
+  <h4>Works On Most Websites!</h4>
+
+  <label for="link">Enter URL or HTML Code:</label>
+  <textarea id="codeInput" rows="6" placeholder="Paste HTML code or URL here"></textarea>
+
+  <button onclick="loadContent()">Load Content</button>
+  <button onclick="openMenu()">Games</button>
+  <button onclick="openCode()">Download Source Code</button>
+
+  <div id="gameMenu">
+    <button onclick="closeMenu()">Close</button>
+    <h3>Select a Game</h3>
+    <button onclick="loadSlopeGame()">Load Slope</button>
+    <button onclick="loadPixelForce()">Load Pixel Force</button>
+    <button onclick="loadFootballLegends2019()">Load Football Legends 2019</button>
+    <button onclick="loadTombMaskNeon()">Load Tomb of the Mask Neon</button>
+    <button onclick="loadMotoX3M()">Load Moto X3M</button>
+    <button onclick="loadGeometryArrow()">Load Geometry Arrow</button>
+    <button onclick="loadTurboMoto()">Load Turbo Moto Racer</button>
+  </div>
+
+  <div id="codeMenu">
+    <button onclick="closeCode()">Close</button>
+    <h3>Press crtl+S to download source code.</h3>
+  </div>
+
+  <h2>Output:</h2>
+  <iframe id="previewFrame"></iframe>
+
+  <script>
+    function loadContent() {
+      const input = document.getElementById('codeInput').value.trim();
+      const iframe = document.getElementById('previewFrame');
+
+      if (input.startsWith('http')) {
+        iframe.src = input;
+      } else {
+        const styledHtml = `
+          <html>
+            <head>
+              <style>
+                body {
+                  background-color: #000;
+                  color: #00FF00;
+                  font-family: "Courier New", monospace;
+                  padding: 20px;
+                }
+              </style>
+            </head>
+            <body>
+              ${input}
+            </body>
+          </html>
+        `;
+        const blob = new Blob([styledHtml], { type: 'text/html' });
+        iframe.src = URL.createObjectURL(blob);
+      }
+    }
+
+    function openMenu() {
+      document.getElementById('gameMenu').style.display = 'block';
+      closeCode()
+    }
+
+    function openCode() {
+      document.getElementById('codeMenu').style.display = 'block';
+      closeMenu()
+    }
+
+    function closeMenu() {
+      document.getElementById('gameMenu').style.display = 'none';
+    }
+
+    function closeCode() {
+      document.getElementById('codeMenu').style.display = 'none';
+    }
+
+    function displayGame(gameHtml) {
+      const blob = new Blob([gameHtml], { type: 'text/html' });
+      document.getElementById('previewFrame').src = URL.createObjectURL(blob);
+      closeMenu();
+    }
+
+    function loadSlopeGame() {
+      const code = `<iframe width="960" height="641" allow="autoplay" allowfullscreen frameborder="0" scrolling="no"
+        src="https://storage.y8.com/y8-studio/unity_webgl/Gani/slope-game_2025_v3/?key=9757549&amp;value=80527"></iframe>`;
+      displayGame(code);
+    }
+
+    function loadPixelForce() {
+      const code = `<iframe width="960" height="540" allow="autoplay" allowfullscreen frameborder="0" scrolling="yes"
+        src="https://html5.gamedistribution.com/c5e6a947c3bc40b6b4cfb3aca60de555/?gd_sdk_referrer_url=https%3A%2F%2Ffr.y8.com%2Fgames%2Fpixel_force&amp;key=y8&amp;value=default"></iframe>`;
+      displayGame(code);
+    }
+
+    function loadFootballLegends2019() {
+      const code = `<iframe width="800" height="480" allow="autoplay" allowfullscreen frameborder="0" scrolling="yes"
+        src="https://storage.y8.com/y8-studio/html5/madpuffers/Football_2019_new/?key=2365427&amp;value=166419"></iframe>`;
+      displayGame(code);
+    }
+
+    function loadTombMaskNeon() {
+      const code = `<iframe width="450" height="750" allow="autoplay" allowfullscreen frameborder="0" scrolling="no"
+        src="https://html5.gamedistribution.com/1f5e4be55ab44692a86bc48d41e66ce5/?gd_sdk_referrer_url=https%3A%2F%2Ffr.y8.com%2Fgames%2Ftomb_of_the_mask_neon&amp;key=y8&amp;value=default"></iframe>`;
+      displayGame(code);
+    }
+
+    function loadMotoX3M() {
+      const code = `<iframe width="1050" height="701" allow="autoplay" allowfullscreen frameborder="0" scrolling="no"
+        src="https://storage.y8.com/y8-studio/html5/madpuffers/MotoX3M_1_new/?key=2365427&amp;value=87599"></iframe>`;
+      displayGame(code);
+    }
+
+    function loadGeometryArrow() {
+      const code = `<iframe width="909" height="500" allow="autoplay" allowfullscreen frameborder="0" scrolling="no"
+        src="https://html5.gamedistribution.com/9ee26ba4405c456094c70af7dc31a524/?gd_sdk_referrer_url=https%3A%2F%2Ffr.y8.com%2Fgames%2Fgeometry_arrow&amp;key=y8&amp;ratio_tolerant=true&amp;value=default"></iframe>`;
+      displayGame(code);
+    }
+
+    function loadTurboMoto() {
+      const code = `<iframe width="960" height="639" allow="autoplay" allowfullscreen frameborder="0" scrolling="no"
+        src="https://storage.y8.com/y8-studio/unity_webgl/gamosoftstudios/TurboMotoRacer-2022-v1/?key=6842727&amp;value=170775"></iframe>`;
+      displayGame(code);
+    }
+  </script>
+
+</body>
+</html>
